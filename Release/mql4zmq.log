@@ -1,0 +1,26 @@
+﻿Build started 2019/08/05 16:57:49.
+Project "Z:\zenbook\github\mql4zmq\mql4zmq.vcxproj" on node 2 (rebuild target(s)).
+_PrepareForClean:
+  Deleting file "Release\mql4zmq.lastbuildstate".
+InitializeBuildStatus:
+  Creating "Release\mql4zmq.unsuccessfulbuild" because "AlwaysCreate" was specified.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D MQL4ZMQ_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt mql4zmq.cpp
+  mql4zmq.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Z:\zenbook\github\mql4zmq\Release\mql4zmq.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"mql4zmq.def" /MANIFEST /ManifestFile:"Release\mql4zmq.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Z:\zenbook\github\mql4zmq\Release\mql4zmq.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Z:\zenbook\github\mql4zmq\Release\mql4zmq.lib" /MACHINE:X86 /DLL Release\mql4zmq.obj
+  "..\..\vmdir\workspace\zeromq-2.2.0\builds\msvc\Release\libzmq.lib"
+     Creating library Z:\zenbook\github\mql4zmq\Release\mql4zmq.lib and object Z:\zenbook\github\mql4zmq\Release\mql4zmq.exp
+  Generating code
+  Finished generating code
+  mql4zmq.vcxproj -> Z:\zenbook\github\mql4zmq\Release\mql4zmq.dll
+Manifest:
+  C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"Z:\zenbook\github\mql4zmq\Release\mql4zmq.dll;#2" /manifest Release\mql4zmq.dll.intermediate.manifest
+FinalizeBuildStatus:
+  Deleting file "Release\mql4zmq.unsuccessfulbuild".
+  Touching "Release\mql4zmq.lastbuildstate".
+Done Building Project "Z:\zenbook\github\mql4zmq\mql4zmq.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.21

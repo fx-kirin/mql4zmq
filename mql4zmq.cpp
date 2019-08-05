@@ -29,7 +29,8 @@
 */
 
 // Include the original libzmq header file.
-#include "../../../include/zmq.h"
+#include "include/zmq.h"
+#include <stdio.h>
 
 // Handle DSO symbol visibility. This is already defined in zmq.h, but we set it here again to protect against future changes to Microsoft Visual C++ detection methods.
 #define ZMQ_EXPORT __declspec(dllexport)
@@ -67,9 +68,29 @@ ZMQ_EXPORT const char* WINAPI mql4zmq_strerror (int errnum)
 /******************************************************************************/
 /*  0MQ message definition.                                                   */
 /******************************************************************************/
-ZMQ_EXPORT int WINAPI mql4zmq_msg_init (zmq_msg_t *msg)
+ZMQ_EXPORT int WINAPI mql4zmq_new_zmq_msg()
 {
-	return zmq_msg_init(msg);
+	zmq_msg_t* msg = new zmq_msg_t();
+	return (int)msg;
+}
+
+/******************************************************************************/
+/*  0MQ message definition.                                                   */
+/******************************************************************************/
+ZMQ_EXPORT void WINAPI mql4zmq_free_zmq_msg(int zmq_msg_p)
+{
+	zmq_msg_t* msg = (zmq_msg_t*) zmq_msg_p;
+	free(msg);
+}
+
+/******************************************************************************/
+/*  0MQ message definition.                                                   */
+/******************************************************************************/
+ZMQ_EXPORT int WINAPI mql4zmq_msg_init (int zmq_msg_p)
+{
+	zmq_msg_t* msg = (zmq_msg_t*) zmq_msg_p;
+	int result = zmq_msg_init(msg);
+	return result;
 }
 
 ZMQ_EXPORT int WINAPI mql4zmq_msg_init_size (zmq_msg_t *msg, size_t size)
@@ -216,7 +237,7 @@ ZMQ_EXPORT const char* WINAPI mql4s_recv (void* socket, int flags)
     size = zmq_msg_size(&message);
 
 	// Initialize variable to hold the message.
-	string = malloc (size + 1);
+	string = (char *)malloc (size + 1);
 
 	// Retrive pointer to message data and store message in variable 'string'
 	memcpy (string, zmq_msg_data (&message), size);

@@ -6,6 +6,8 @@ mql4zmq_version
 mql4zmq_errno
 mql4zmq_strerror
 
+mql4zmq_new_zmq_msg
+mql4zmq_free_zmq_msg
 mql4zmq_msg_init
 mql4zmq_msg_init_size
 mql4zmq_msg_init_data

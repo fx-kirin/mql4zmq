@@ -39,9 +39,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>Z:\zenbook\vmdir\zeromq-2.2.0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>Z:\zenbook\vmdir\workspace\zeromq-2.2.0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,10 +85,10 @@
     <ClInclude Include="mql4zmq.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mql4zmq.c" />
+    <ClCompile Include="mql4zmq.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Debug\libzmq.lib" />
+    <Library Include="..\..\vmdir\workspace\zeromq-2.2.0\builds\msvc\Release\libzmq.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

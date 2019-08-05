@@ -23,11 +23,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mql4zmq.c">
+    <ClCompile Include="mql4zmq.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Debug\libzmq.lib" />
+    <Library Include="..\..\vmdir\workspace\zeromq-2.2.0\builds\msvc\Release\libzmq.lib" />
   </ItemGroup>
 </Project>

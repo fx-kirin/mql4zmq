@@ -31,14 +31,16 @@ int mql4zmq_errno();
 string mql4zmq_strerror(int errnum);
 
 // Messages.
-int mql4zmq_msg_init(int &msg[]);
-int mql4zmq_msg_init_size (int &msg[], int size);
-int mql4zmq_msg_init_data (int &msg[], string data, int size);
-int mql4zmq_msg_close (int $msg[]);
+int mql4zmq_new_zmq_msg();
+int mql4zmq_free_zmq_msg(int zmq_msg);
+int mql4zmq_msg_init(int zmq_msg);
+int mql4zmq_msg_init_size (int zmq_msg, int size);
+int mql4zmq_msg_init_data (int zmq_msg, string data, int size);
+int mql4zmq_msg_close (int zmq_msg);
 int mql4zmq_msg_move (int dest, int src);
 int mql4zmq_msg_copy (int dest, int src);
-string mql4zmq_msg_data (int &msg[]);
-int mql4zmq_msg_size (int &msg[]);
+string mql4zmq_msg_data (int zmq_msg);
+int mql4zmq_msg_size (int zmq_msg);
 
 // Infrastructure.
 int mql4zmq_init (int io_threads);
@@ -51,8 +53,8 @@ int mql4zmq_setsockopt (int socket, int option, string optval, int optvallen);
 int mql4zmq_getsockopt (int socket, int option, string optval, int optvallen);
 int mql4zmq_bind (int socket, string addr);
 int mql4zmq_connect (int socket, string addr);
-int mql4zmq_send (int socket, int &msg[], int flags);
-int mql4zmq_recv (int socket, int &msg[], int flags);
+int mql4zmq_send (int socket, int zmq_msg, int flags);
+int mql4zmq_recv (int socket, int zmq_msg, int flags);
 
 // I/O multiplexing.
 int mql4zmq_poll (int items, int nitems, int timeout);
@@ -88,24 +90,34 @@ string zmq_strerror(int errnum)
 }
 
 // Messages.
-int zmq_msg_init(int &msg[])
+int new_zmq_msg()
 {
-   return(mql4zmq_msg_init(msg));
+   return(mql4zmq_new_zmq_msg());
 }
 
-int zmq_msg_init_size (int &msg[], int size)
+int free_zmq_msg(int zmq_msg)
 {
-   return(mql4zmq_msg_init_size(msg, size));
+   return(mql4zmq_free_zmq_msg(zmq_msg));
 }
 
-int zmq_msg_init_data (int &msg[], string data, int size)
+int zmq_msg_init(int zmq_msg)
 {
-   return(mql4zmq_msg_init_data(msg, data, size));
+   return(mql4zmq_msg_init(zmq_msg));
 }
 
-int zmq_msg_close (int &msg[])
+int zmq_msg_init_size (int zmq_msg, int size)
 {
-   return(mql4zmq_msg_close(msg));
+   return(mql4zmq_msg_init_size(zmq_msg, size));
+}
+
+int zmq_msg_init_data (int zmq_msg, string data, int size)
+{
+   return(mql4zmq_msg_init_data(zmq_msg, data, size));
+}
+
+int zmq_msg_close (int zmq_msg)
+{
+   return(mql4zmq_msg_close(zmq_msg));
 }
 
 int zmq_msg_move (int dest, int src)
@@ -118,14 +130,14 @@ int zmq_msg_copy (int dest, int src)
    return(mql4zmq_msg_copy (dest, src));
 }
 
-string zmq_msg_data (int &msg[])
+string zmq_msg_data (int zmq_msg)
 {
-   return(mql4zmq_msg_data(msg));
+   return(mql4zmq_msg_data(zmq_msg));
 }
 
-int zmq_msg_size (int &msg[])
+int zmq_msg_size (int zmq_msg)
 {
-   return(mql4zmq_msg_size(msg));
+   return(mql4zmq_msg_size(zmq_msg));
 }
 
 // Infrastructure.
@@ -174,16 +186,16 @@ int zmq_connect (int socket, string addr)
 
 // Defaults to no flags; meaning the flag is an optional paramater. 
 // Common flags are: ZMQ_NOBLOCK, ZMQ_SNDMORE
-int zmq_send (int socket, int &msg[], int flags=0)
+int zmq_send (int socket, int zmq_msg, int flags=0)
 {
-   return(mql4zmq_send(socket, msg, flags));
+   return(mql4zmq_send(socket, zmq_msg, flags));
 }
 
 // Defaults to no flags; meaning the flag is an optional paramater. 
 // Common flags are: ZMQ_NOBLOCK, ZMQ_SNDMORE
-int zmq_recv (int socket, int &msg[], int flags=0)
+int zmq_recv (int socket, int zmq_msg, int flags=0)
 {
-   return(mql4zmq_recv(socket, msg, flags));
+   return(mql4zmq_recv(socket, zmq_msg, flags));
 }
 
 // I/O multiplexing.
